@@ -186,3 +186,20 @@ k get svc
 
 ```
 
+## Dockerizing app Node
+
+```sh
+# Create app Node
+npm init -y
+
+# Create Dockerfile
+
+# build image
+docker build . -t cvargas9304/k8s-web-hello
+
+# show docker image
+docker images | grep k8s-web-hello
+
+# Push docker image
+docker push cvargas9304/k8s-web-hello
+```
