@@ -228,7 +228,7 @@ minikube ip
 # Connect ssh minikube
 minikube ssh | ssh docker@<minikube ip>
 
-curl 10.96.149.33:3000
+curl 10.96.149.33:3000; echo
 curl <cluster_ip>:port
 ```
 
@@ -238,4 +238,22 @@ Scale deployment (aumentar la cantidad de puertos ):
 
 ```sh
 
+k get pods
+
+k get deploy
+
+k scale deployment k8s-web-hello --replicas=4
+
+k get pods
+
+# Hay 4 pods, todos pertenecen al mismo cluster IP y estan disponibles a travez del cluster IP, K8S decidira que puerto atendera cada solicitud
+k get svc
+
+
+# Connect ssh minikube
+minikube ssh | ssh docker@<minikube ip>
+
+curl 10.96.149.33:3000; echo
+
+# Note: Observe how it is served by different pods
 ```
