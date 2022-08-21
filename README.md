@@ -68,8 +68,7 @@ minikube status
 minikube ip
 
 # Connect by ssh to minikube
-ssh docker@<minikube_ip>
-minikube ssh
+ssh docker@<minikube_ip> | minikube ssh
 
 # Exit ssh minikube
 exit
@@ -202,4 +201,41 @@ docker images | grep k8s-web-hello
 
 # Push docker image
 docker push cvargas9304/k8s-web-hello
+```
+
+## Creating Deployment based on the custom Docker image
+
+```sh
+# Create deployment based on the custom Docker image
+k create deployment k8s-web-hello --image=cvargas9304/k8s-web-hello
+
+# show pods
+$ k get pods
+NAME                             READY   STATUS    RESTARTS   AGE
+k8s-web-hello-867b9dd65d-dtdjh   1/1     Running   0          4m3s
+# Tip
+k8s-web-hello-<hash_replica_set>-<hash_particular_port>
+
+# Create service using cluster ip
+k expose deployment k8s-web-hello --port=3000
+
+# Show service
+k get svc
+
+# Show Ip minikube
+minikube ip
+
+# Connect ssh minikube
+minikube ssh | ssh docker@<minikube ip>
+
+curl 10.96.149.33:3000
+curl <cluster_ip>:port
+```
+
+## Scaling custom image deployment
+
+Scale deployment (aumentar la cantidad de puertos ):
+
+```sh
+
 ```
